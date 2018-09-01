@@ -1,0 +1,8 @@
+.taskgrid {
+  background-color: #dfdfdf;
+  display: grid;  
+  grid-auto-flow: dense;
+  grid-auto-rows: 60px;
+  grid-gap: 6px;
+  grid-template-columns: repeat(auto-fill, minmax(60px,1fr));
+}

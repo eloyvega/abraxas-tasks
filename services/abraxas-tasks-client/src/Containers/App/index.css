@@ -1,0 +1,17 @@
+.appheader-title {
+  border-bottom-color: #fccc5b;
+  border-bottom-style: dashed;
+  border-left-color: #fccc5b;
+  border-left-style: dashed;
+  color: rgb(240, 242, 245);
+  font-size: 24px;
+  font-style: italic;
+  font-weight: bold;
+}
+                
+.appheader-link {
+  border-bottom-color: #ffcc5c;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  color: #f0f2f5;
+}

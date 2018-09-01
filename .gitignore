@@ -1,0 +1,14 @@
+# SECTION: Custom
+aws/
+*.tar
+
+# SECTION: Vagrant
+.vagrant/
+
+# SECTION: Python
+*.log
+*.pot
+*.pyc
+*/*/*/__pycache__/
+*/*/__pycache__/
+*/__pycache__/
