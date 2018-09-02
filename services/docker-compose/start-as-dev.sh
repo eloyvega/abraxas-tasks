@@ -2,6 +2,8 @@ export REACT_APP_GRAPHQL_URI="http://192.168.50.4:5000/graphql"
 export WORKERS="1"
 export MONGO_URI="mongodb://root:example@192.168.50.4:27017/admin"
 export MONGO_DB="abraxa-tasks"
+export ABRAXAS_TASKS_CLIENT_IMAGE="abraxas-tasks-client"
+export ABRAXAS_TASKS_API_IMAGE="abraxas-tasks-api"
 
 DOCKER_COMPOSE_DIR=$(pwd)
 
