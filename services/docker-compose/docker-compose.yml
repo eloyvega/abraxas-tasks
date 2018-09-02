@@ -21,7 +21,7 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
 
   abraxas-tasks-client:
-    image: abraxas-tasks-client
+    image: ${ABRAXAS_TASKS_CLIENT_IMAGE}
     restart: always
     ports:
       - 3000:3000
@@ -29,7 +29,7 @@ services:
       - REACT_APP_GRAPHQL_URI=${REACT_APP_GRAPHQL_URI}
 
   abraxas-tasks-api:
-    image: abraxas-tasks-api
+    image: ${ABRAXAS_TASKS_API_IMAGE}
     restart: always
     ports:
       - 5000:5000
