@@ -14,7 +14,7 @@ export default class extends React.Component {
     console.log(tasks);
     const tasksBoxes = tasks.map((task, index) => <TaskBox task={task} key={index} onClick={(task) => this.props.onClick(task)} />);
     return (
-      <div 
+      <div
         data-step="3"
         data-intro="Una vez creada tu tarea podras verla listada aqui!"
         className="taskgrid"

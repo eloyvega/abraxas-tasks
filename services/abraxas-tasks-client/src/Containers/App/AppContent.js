@@ -3,9 +3,7 @@ import React from 'react';
 import 'intro.js/introjs.css';
 import introJs from 'intro.js/intro.js';
 import { ApolloProvider } from 'react-apollo'
-import { Button } from 'antd';
-import { Layout } from 'antd';
-import { Drawer } from 'antd';
+import { Button, Layout, Drawer } from 'antd';
 
 import {client} from "../Utils/Graphql";
 import TasksFilter from '../../Presentational/TasksFilter';
@@ -33,13 +31,13 @@ export default class extends React.Component {
   getNewTaskButton() {
     return (
       <div style={{ padding: "17px", width: "90%"}}>
-        <div style={{float: "right", marginTop: "10px"}}>    
+        <div style={{float: "right", marginTop: "10px"}}>
           <Button type="primary" icon="plus" size="large"
             data-step="2"
             data-intro="Lo primero que debes saber es que aqui puedes crear tareas. Cuentame que quieres hacer y cuanto tiempo te tomara."
             onClick={() => this.setState({visibleCreateTask: true})}
           >
-            Nueva tarea 
+            Nueva tarea
           </Button>
         </div>
       </div>
@@ -57,22 +55,22 @@ export default class extends React.Component {
         onClose={() => {this.setState({visibleCreateTask: false})}}
       >
         {<CreateTask />}
-      </Drawer> 
+      </Drawer>
     );
   }
 
   render() {
-    const TaskSelected = TaskSelectedContainer(this.state.filter)
+    const TaskSelected = TaskSelectedContainer(this.state.filter);
     return (
       <ApolloProvider client={client}>
-      <Content style={{ 
+      <Content style={{
         padding: '0 50px',
         marginTop: "270px",
         overflow: "overlay",
         marginBottom: "78px"
       }}>
         {this.getCreateTaskDrawer()}
-      
+
         <div
           style={{
             position: "absolute",

@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { Button } from 'antd';
-import { Input } from 'antd';
-import { TimePicker } from 'antd';
+import { Button, Input, TimePicker } from 'antd';
 import moment from 'moment';
 
 const { TextArea } = Input;
@@ -21,28 +19,28 @@ export default class extends React.Component {
     return (
       <div>
         <p>Duracion</p>
-        <TimePicker defaultValue={moment('00:30:00', 'HH:mm:ss')} 
-          placeholder="Duracion" 
+        <TimePicker defaultValue={moment('00:30:00', 'HH:mm:ss')}
+          placeholder="Duracion"
           onChange={(time, timeString) => this.setState({newTaskDuration: toSeconds(time)})}
         />
       </div>
     );
-  }  
+  }
 
   render() {
     return (
       <div>
         <p>Descripcion</p>
-        <TextArea placeholder="Programar un pacman" 
-          style={{marginBottom: "6px"}} 
-          onChange={(evt) => {this.setState({newTaskDetail: evt.target.value})}} 
+        <TextArea placeholder="Programar un pacman"
+          style={{marginBottom: "6px"}}
+          onChange={(evt) => {this.setState({newTaskDetail: evt.target.value})}}
         />
-        
+
         {this.getTimePicker()}
         <br />
 
-        <Button 
-            type="primary" 
+        <Button
+            type="primary"
             style={{width: "100%", marginTop: "15px"}}
             onClick={() => {
               const variables = {
@@ -51,8 +49,8 @@ export default class extends React.Component {
               };
               this.props.addTask(variables);
             }}
-        > 
-          Crear 
+        >
+          Crear
         </Button>
       </div>
     );

@@ -1,5 +1,4 @@
-import ApolloClient from 'apollo-client';
-import { createNetworkInterface } from 'apollo-client';
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
 
 import gql from "graphql-tag";
 

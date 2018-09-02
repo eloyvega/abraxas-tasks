@@ -61,7 +61,8 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "sonar-scanner": "node_modules/sonar-scanner/bin/sonar-scanner"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.10",
@@ -70,7 +71,8 @@
     "@storybook/react": "^3.4.10",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
-    "relay-compiler": "^1.6.2"
+    "relay-compiler": "^1.6.2",
+    "sonar-scanner": "^3.1.0"
   },
   "jest": {
     "collectCoverageFrom": [
