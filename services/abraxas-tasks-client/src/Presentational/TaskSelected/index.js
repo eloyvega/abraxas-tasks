@@ -31,7 +31,7 @@ export default class extends React.Component {
   startButton(isTaskSelected, task) {
     return (
       <Button type="primary" icon="play-circle-o"
-        disabled={!isTaskSelected}
+        disabled={!isTaskSelected || task.finished}
         onClick={() => {
           const startCount = () => {
             return setTimeout(() => {
@@ -41,6 +41,7 @@ export default class extends React.Component {
                 this.setState({task});
                 this.props.onChange(task);
                 clearTimeout(this.state.startTimeOut);
+                this.setState({started: false});
               } else {
                 const task = {...this.state.task, consumedTime};
                 this.setState({task});
@@ -73,6 +74,8 @@ export default class extends React.Component {
        <Button  icon="edit" disabled={!isTaskSelected}
         onClick={
           () => {
+            this.setState({started: false});
+            clearTimeout(this.state.startTimeOut);
             this.setState({editable: true,
               isTaskSelected: false
             });
@@ -85,8 +88,10 @@ export default class extends React.Component {
       return (
         <Button  icon="save"
           onClick={ () => {
+              this.setState({started: false});
+              clearTimeout(this.state.startTimeOut);
               this.setState({editable: false, isTaskSelected: true})
-              this.props.onChange(this.state.task);
+              this.props.onChange({...this.state.task, duration: this.state.newTaskDuration});
             }
           }
         > Guardar </Button>
@@ -122,6 +127,8 @@ export default class extends React.Component {
           () => {
             this.props.onDelete(this.state.task)
             this.setState({task: {}});
+            this.setState({started: false});
+            clearTimeout(this.state.startTimeOut);
           }
         }
       >
@@ -138,6 +145,8 @@ export default class extends React.Component {
             const task = {...this.state.task, consumedTime: 0};
               this.setState({task});
               this.props.onChange(task);
+              this.setState({started: false});
+              clearTimeout(this.state.startTimeOut);
             }
           }
         okText="Si"
@@ -150,12 +159,14 @@ export default class extends React.Component {
 
   getMarkAsCompleteButton(isTaskSelected) {
     return (
-      <Button  icon={this.state.task.finished ? "check" : "close" }
+      <Button  icon={this.state.task.finished ? "close" : "check"} style={{color: this.state.task.finished ? "#fd6f69" : "#83b6a4"}}
         disabled={!isTaskSelected}
         onClick={() =>{
           let task = {...this.state.task};
           task['finished'] = !task['finished'];
           this.setState({task});
+          clearTimeout(this.state.startTimeOut);
+          this.setState({started: false});
           this.props.onChange(task);
           }
         }
@@ -166,7 +177,7 @@ export default class extends React.Component {
   getTimePicker(timer) {
     const toSeconds = (time) => ((time.hours() * 60 * 60) + (time.minutes() * 60) + time.seconds());
     return (
-      <div style={{float: "right"}}>
+      <div>
         <TimePicker defaultValue={moment(timer, 'HH:mm:ss')}
           placeholder="Duracion"
           onChange={(time, timeString) => this.setState({newTaskDuration: toSeconds(time)})}
@@ -176,18 +187,18 @@ export default class extends React.Component {
   }
 
   getTimer() {
-    if (!this.state.editable) {
-      return (
+    return (
+      <div>
         <p className="taskselected-title"
-          style={{borderBottomColor: "#fbc654", color: "#f06e67", float: "right"}}>
-          {
-            prettyFormatSeconds((this.state.task.duration - this.state.task.consumedTime))
-          }
+          style={{borderBottom: "unset", color: "#ffffff", marginBottom: "0px", float: "left"}}>
+            {this.state.editable ? this.getTimePicker(prettyFormatSeconds(this.state.task.duration)) : "Duracion: " + prettyFormatSeconds((this.state.task.duration))}
         </p>
-      );
-    } else {
-      return this.getTimePicker(prettyFormatSeconds((this.state.task.duration - this.state.task.consumedTime)));
-    }
+        <p className="taskselected-title"
+          style={{borderBottom: "unset", color: "#f06e67", float: "right"}}>
+            Tiempo restante: {prettyFormatSeconds((this.state.task.duration - this.state.task.consumedTime))}
+        </p>
+      </div>
+    );
   }
 
   render() {
@@ -195,14 +206,19 @@ export default class extends React.Component {
     const task = isTaskSelected ? this.state.task : {};
     return (
       <Card
-        data-step="7"
-        data-intro="Cuando des click sobre una de las tareas, la veras a detalle aqui y podras borrarla, editarla o iniciar la ejecucion. Eso es todo, ten un dia productivo ;)."
         className="taskselected"
       >
         <Meta
           title={
             <div>
-              <p className="taskselected-title">  Tarea actual </p>
+              <div style={{height: "45px"}}>
+              <p className="taskselected-title" style={{float: "left"}}>
+                Tarea actual 
+              </p>
+              <p className="taskselected-title" style={{float: "right", borderBottomStyle: "unset", color: !this.state.task.finished ? "#fd6f69" : "#83b6a4"}}>
+                {this.state.task.finished ? "Terminada" : "Pendiente"}
+              </p>
+              </div>
               {this.getTimer()}
             </div>
           }
@@ -215,7 +231,7 @@ export default class extends React.Component {
           {this.getEditButton(isTaskSelected)}
           {this.getRestartButton(isTaskSelected)}
 
-          {!this.state.started ? this.startButton(isTaskSelected, task): this.stopButton(isTaskSelected, task)}
+          {!this.state.started || this.state.task.finished ? this.startButton(isTaskSelected, task): this.stopButton(isTaskSelected, task)}
 
           {this.getMarkAsCompleteButton(isTaskSelected)}
         </ButtonGroup>

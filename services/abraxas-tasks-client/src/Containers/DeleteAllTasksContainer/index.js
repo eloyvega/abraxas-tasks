@@ -21,13 +21,14 @@ export default (filter, callback) => graphql(QUERY_DELETE_ALL_TASKS, {
   })
 })((props) => {
   return (
-    <Button size="large"
+    <Button
+    type="danger"
     onClick={() => {
         props.deleteTasks();
         callback();
      }
     }>
-      Borrar las tareas
+      Borrar todo
     </Button>
   );
 });

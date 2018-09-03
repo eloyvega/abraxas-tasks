@@ -24,7 +24,7 @@ export default (filter) => graphql(QUERY_CREATE_RANDOM_TASK, {
   })
 })((props) => {
   return (
-    <Button size="large"
+    <Button
     onClick={() =>{
       Array.from({length: 50}).forEach(() => {
         let createdAt = moment().subtract(Math.floor(Math.random() * (7 + 1)), "days").toISOString();
@@ -34,7 +34,7 @@ export default (filter) => graphql(QUERY_CREATE_RANDOM_TASK, {
         props.addTask({detail: loremIpsum(), createdAt, duration, consumedTime, finished: (Math.random() >= 0.5)});
       });
     }}>
-      Crear tareas aleatorios
+      Tareas aleatorias
     </Button>
   );
 });

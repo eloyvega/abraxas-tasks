@@ -87,8 +87,8 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div>
-        <div style={{"width": "50%"}}
+      <div className="tasks-filter">
+        <div
           data-step="4"
           data-intro="Puedes buscar tus tareas a partir de la descripcion"
         >

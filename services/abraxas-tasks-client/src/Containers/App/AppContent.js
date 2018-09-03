@@ -35,12 +35,15 @@ export default class extends React.Component {
     const CreateRandomTasks = CreateRandomTasksContainer(this.state.filter);
     const DeleteAllTasks = DeleteAllTasksContainer(this.state.filter, () => this.setState({selectedTask: {}}));
     return (
-      <div style={{ padding: "17px", width: "90%"}}>
-        <div style={{float: "right", marginTop: "10px"}}>
+      <div
+        data-step="9"
+        data-intro="Este boton te permitira crear 50 tareas aleatorias"
+      >
+        <div className="tasks-actions-container" style={{float: "right", marginTop: "10px", marginRight: "45px" }}>
           <DeleteAllTasks />
           <CreateRandomTasks style={{marginLeft: "5px"}} />
           <Button style={{marginLeft: "5px"}}
-            type="primary" icon="plus" size="large"
+            type="primary" icon="plus"
             data-step="2"
             data-intro="Lo primero que debes saber es que aqui puedes crear tareas. Cuentame que quieres hacer y cuanto tiempo te tomara."
             onClick={() => this.setState({visibleCreateTask: true})}
@@ -71,12 +74,7 @@ export default class extends React.Component {
     const TaskSelected = TaskSelectedContainer(this.state.filter);
     return (
       <ApolloProvider client={client}>
-        <Content style={{
-          padding: '0 50px',
-          marginTop: "300px",
-          overflow: "overlay",
-          marginBottom: "78px"
-        }}>
+        <Content>
           {this.getCreateTaskDrawer()}
 
           <div
@@ -86,16 +84,25 @@ export default class extends React.Component {
               top: "73px",
             }}
           >
-            <div style={{display: "flex"}}>
-              <div style={{ height: "140px", width: "39%", marginTop: "22px" }}>
+            <div className="tasks-header-container">
+              <div 
+                style={{ height: "150px", marginTop: "22px" }}
+                className="chart-tasks-completenes-container"
+                data-step="8"
+                data-intro="Esta grafica te mostrara un resumen de tus tareas por dia de la semana."
+              >
                 <ChartTasksCompletenesContainer />
               </div>
-              <div style={{ height: "140px", width: "50%" }}>
+              <div 
+                className="task-selected-container"
+                data-step="7"
+                data-intro="Cuando des click sobre una tarea veras toda su informacion aqui."
+              >
                 <TaskSelected task={this.state.selectedTask} />
               </div>
             </div>
 
-            <div>
+            <div style={{marginTop: "35px", width: "90%"}}>
               {this.getNewTaskButton()}
 
               <TasksFilter onClickSearch={(filter) => {
@@ -104,6 +111,17 @@ export default class extends React.Component {
             </div>
 
           </div>
+          <div
+            data-step="3"
+            data-intro="Una vez creada la veras aqui"
+            style={{
+              borderBottomColor:" #fccc5b",
+              borderBottomStyle: "solid",
+              color: "#2e3e4f",
+              fontWeight: "bold",
+              marginBottom: "7px"
+            }}
+          > Mis tareas </div>
           {TasksGridContainer({...this.state.filter, onClick: (task) => this.setState({selectedTask: task})})}
         </Content>
       </ApolloProvider>
