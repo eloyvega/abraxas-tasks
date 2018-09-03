@@ -4,10 +4,12 @@ from tasks.model import Task as TaskModel
 
 from tasks.schema.task import Task
 from tasks.schema.mutations.create_task import CreateTask
+from tasks.schema.mutations.create_tasks import CreateTasks
 from tasks.schema.mutations.delete_tasks import DeleteTasks
 from tasks.schema.mutations.update_task import UpdateTask
 
 class Mutations(graphene.ObjectType):
+  create_tasks = CreateTasks.Field()
   create_task = CreateTask.Field()
   delete_tasks = DeleteTasks.Field()
   update_task = UpdateTask.Field()
