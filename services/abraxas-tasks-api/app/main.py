@@ -9,7 +9,7 @@ from schema import schema
 MONGO_DB = os.environ['MONGO_DB']
 MONGO_URI = os.environ['MONGO_URI']
 
-connect(MONGO_DB, host=MONGO_URI, alias='default')
+connect(MONGO_DB, host=MONGO_URI)
 
 flask_app = Flask(__name__)
 CORS(flask_app)

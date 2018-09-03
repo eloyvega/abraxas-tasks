@@ -22,9 +22,35 @@ export const QUERY_VISIBLE_TASKS = gql`
   }
 `;
 
+export const QUERY_ALL_TASKS = gql`
+  query {
+    tasks {
+      id
+      duration
+      detail
+      finished
+      consumedTime
+      createdAt
+    }
+  }
+`;
+
 export const QUERY_DELETE_TASK = gql`
   mutation DeleteTask($detail: String!) {
     deleteTasks(detail: $detail) {
+      tasks {
+        duration
+        detail
+        createdAt
+        finished
+      }
+    }
+  }
+`;
+
+export const QUERY_DELETE_ALL_TASKS = gql`
+  mutation DeleteTask {
+    deleteTasks {
       tasks {
         duration
         detail

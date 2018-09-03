@@ -35,12 +35,20 @@ export default class extends React.Component {
         onClick={() => {
           const startCount = () => {
             return setTimeout(() => {
-              const task = {...this.state.task, consumedTime: this.state.task.consumedTime+1};
+              const consumedTime = this.state.task.consumedTime + 1;
+              if (consumedTime > this.state.task.duration) {
+                const task = {...this.state.task, finished: true};
+                this.setState({task});
+                this.props.onChange(task);
+                clearTimeout(this.state.startTimeOut);
+              } else {
+                const task = {...this.state.task, consumedTime};
                 this.setState({task});
                 this.props.onChange(task);
                 this.setState({startTimeOut: startCount()});
-              }, 1000);
-            }
+              }
+            }, 1000);
+          }
           this.setState({started: true});
           startCount();
         }
@@ -95,7 +103,7 @@ export default class extends React.Component {
     } else {
       return (
         <Input.TextArea value={detail}
-            style={{marginBottom: "10px", width: "70%"}}
+            style={{marginBottom: "10px"}}
             onChange={ (evt) => {
               this.setState({task: {...this.state.task, detail: evt.target.value}});
             }
