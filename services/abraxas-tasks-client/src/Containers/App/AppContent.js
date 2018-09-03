@@ -35,21 +35,41 @@ export default class extends React.Component {
     const CreateRandomTasks = CreateRandomTasksContainer(this.state.filter);
     const DeleteAllTasks = DeleteAllTasksContainer(this.state.filter, () => this.setState({selectedTask: {}}));
     return (
-      <div
-        data-step="9"
-        data-intro="Este boton te permitira crear 50 tareas aleatorias"
-      >
+      <div>
         <div className="tasks-actions-container" style={{float: "right", marginTop: "10px", marginRight: "45px" }}>
-          <DeleteAllTasks />
-          <CreateRandomTasks style={{marginLeft: "5px"}} />
-          <Button style={{marginLeft: "5px"}}
-            type="primary" icon="plus"
-            data-step="2"
-            data-intro="Lo primero que debes saber es que aqui puedes crear tareas. Cuentame que quieres hacer y cuanto tiempo te tomara."
-            onClick={() => this.setState({visibleCreateTask: true})}
+          <div
+            style={{
+              float: "right"
+            }}
           >
-            Nueva tarea
-          </Button>
+            <Button style={{marginLeft: "5px"}}
+              type="primary" icon="plus"
+              data-step="2"
+              data-intro="Aquí puedes crear tareas. Cuéntame qué quieres hacer y cuánto ⏰ te tomará"
+              onClick={() => this.setState({visibleCreateTask: true})}
+            >
+              Nueva tarea
+            </Button>
+          </div>
+
+          <div
+            style={{
+              float: "right"
+            }}
+            data-step="9"
+            data-intro="Con este botón podrás crear 50 tareas 〰️〰️"
+          >
+            <CreateRandomTasks style={{marginLeft: "5px"}} />
+          </div>
+
+          <div
+            style={{
+              float: "right"
+            }}
+          >
+            <DeleteAllTasks />
+          </div>
+
         </div>
       </div>
     );
@@ -89,14 +109,14 @@ export default class extends React.Component {
                 style={{ height: "150px", marginTop: "22px" }}
                 className="chart-tasks-completenes-container"
                 data-step="8"
-                data-intro="Esta grafica te mostrara un resumen de tus tareas por dia de la semana."
+                data-intro="Esta gráfica te mostrará un resumen de tus tareas por día 📈"
               >
                 <ChartTasksCompletenesContainer />
               </div>
               <div 
                 className="task-selected-container"
                 data-step="7"
-                data-intro="Cuando des click sobre una tarea veras toda su informacion aqui."
+                data-intro="Cuando des clic sobre una tarea, podrás ver todos los detalles aquí 👆"
               >
                 <TaskSelected task={this.state.selectedTask} />
               </div>
@@ -113,7 +133,7 @@ export default class extends React.Component {
           </div>
           <div
             data-step="3"
-            data-intro="Una vez creada la veras aqui"
+            data-intro="Una vez creada, podrás ver tu tarea aquí 👀"
             style={{
               borderBottomColor:" #fccc5b",
               borderBottomStyle: "solid",

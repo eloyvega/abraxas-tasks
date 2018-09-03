@@ -17,7 +17,7 @@ export default class extends React.Component {
         backgroundColor: "#d9d9d9d4"
       }}
         data-step="1"
-        data-intro="Bienvenido a Tasker, te dare un tour rapido por la herramienta."
+        data-intro="Bienvenido a Tasker, te daré un tour rápido por la herramienta 👋"
       >
         <AppHeader />
 
