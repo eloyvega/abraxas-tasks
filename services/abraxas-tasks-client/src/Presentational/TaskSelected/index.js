@@ -3,11 +3,7 @@ import React from 'react';
 import './index.css';
 import 'antd/dist/antd.css';
 import moment from 'moment';
-import { Card } from 'antd';
-import { Input } from 'antd';
-import { Button } from 'antd';
-import { Popconfirm } from 'antd';
-import { TimePicker } from 'antd';
+import { Card, Input, Button, Popconfirm, TimePicker } from 'antd';
 
 import { prettyFormatSeconds } from '../Utils/Timeformat';
 
@@ -34,27 +30,35 @@ export default class extends React.Component {
 
   startButton(isTaskSelected, task) {
     return (
-      <Button type="primary" icon="play-circle-o" 
-        disabled={!isTaskSelected} 
+      <Button type="primary" icon="play-circle-o"
+        disabled={!isTaskSelected}
         onClick={() => {
           const startCount = () => {
-            return setTimeout(() => { 
-              const task = {...this.state.task, consumedTime: this.state.task.consumedTime+1};
+            return setTimeout(() => {
+              const consumedTime = this.state.task.consumedTime + 1;
+              if (consumedTime > this.state.task.duration) {
+                const task = {...this.state.task, finished: true};
+                this.setState({task});
+                this.props.onChange(task);
+                clearTimeout(this.state.startTimeOut);
+              } else {
+                const task = {...this.state.task, consumedTime};
                 this.setState({task});
                 this.props.onChange(task);
                 this.setState({startTimeOut: startCount()});
-              }, 1000);
-            }
+              }
+            }, 1000);
+          }
           this.setState({started: true});
           startCount();
         }
       }/>
     );
   }
-    
+
   stopButton(isTaskSelected, task) {
     return (
-      <Button type="primary" icon="pause-circle-o" disabled={!isTaskSelected} 
+      <Button type="primary" icon="pause-circle-o" disabled={!isTaskSelected}
         onClick={() => {
           this.setState({started: false});
           clearTimeout(this.state.startTimeOut);
@@ -62,11 +66,11 @@ export default class extends React.Component {
       }/>
     );
   }
-  
+
   getEditButton(isTaskSelected) {
     if (!this.state.editable) {
      return (
-       <Button  icon="edit" disabled={!isTaskSelected} 
+       <Button  icon="edit" disabled={!isTaskSelected}
         onClick={
           () => {
             this.setState({editable: true,
@@ -74,7 +78,7 @@ export default class extends React.Component {
             });
           }
         }
-      > 
+      >
       </Button>
      );
     } else {
@@ -89,7 +93,7 @@ export default class extends React.Component {
      );
     }
   }
- 
+
   getTitle() {
     const detail = this.state.task.detail || "...";
     if (!this.state.editable) {
@@ -97,9 +101,9 @@ export default class extends React.Component {
         <p className="taskselected-description"> {detail} </p>
       );
     } else {
-      return ( 
-        <Input.TextArea value={detail} 
-            style={{marginBottom: "10px", width: "70%"}}
+      return (
+        <Input.TextArea value={detail}
+            style={{marginBottom: "10px"}}
             onChange={ (evt) => {
               this.setState({task: {...this.state.task, detail: evt.target.value}});
             }
@@ -107,19 +111,19 @@ export default class extends React.Component {
         />
       );
     }
-  } 
+  }
 
   getDeleteButton(isTaskSelected) {
     return (
       <Popconfirm title="Estas seguro de borrar esta tarea"
-        okText="Si" 
+        okText="Si"
         cancelText="No"
         onConfirm={
           () => {
             this.props.onDelete(this.state.task)
             this.setState({task: {}});
           }
-        } 
+        }
       >
         <Button type="danger" icon="delete" disabled={!isTaskSelected} />
       </Popconfirm>
@@ -128,15 +132,15 @@ export default class extends React.Component {
 
   getRestartButton(isTaskSelected) {
     return (
-      <Popconfirm title="El contador regresara a su estado inicial, estas seguro de esto?" 
+      <Popconfirm title="El contador regresara a su estado inicial, estas seguro de esto?"
         onConfirm={
           () => {
             const task = {...this.state.task, consumedTime: 0};
               this.setState({task});
               this.props.onChange(task);
             }
-          } 
-        okText="Si" 
+          }
+        okText="Si"
         cancelText="No"
       >
         <Button icon="rollback" disabled={!isTaskSelected} />
@@ -146,8 +150,8 @@ export default class extends React.Component {
 
   getMarkAsCompleteButton(isTaskSelected) {
     return (
-      <Button  icon={this.state.task.finished ? "check" : "close" }  
-        disabled={!isTaskSelected} 
+      <Button  icon={this.state.task.finished ? "check" : "close" }
+        disabled={!isTaskSelected}
         onClick={() =>{
           let task = {...this.state.task};
           task['finished'] = !task['finished'];
@@ -174,8 +178,8 @@ export default class extends React.Component {
   getTimer() {
     if (!this.state.editable) {
       return (
-        <p className="taskselected-title" 
-          style={{borderBottomColor: "#fbc654", color: "#f06e67", float: "right"}}> 
+        <p className="taskselected-title"
+          style={{borderBottomColor: "#fbc654", color: "#f06e67", float: "right"}}>
           {
             prettyFormatSeconds((this.state.task.duration - this.state.task.consumedTime))
           }
@@ -198,7 +202,7 @@ export default class extends React.Component {
         <Meta
           title={
             <div>
-              <p className="taskselected-title">  Tarea actual </p> 
+              <p className="taskselected-title">  Tarea actual </p>
               {this.getTimer()}
             </div>
           }
@@ -207,13 +211,13 @@ export default class extends React.Component {
           }
         />
         <ButtonGroup style={{float: "right"}}>
-          {this.getDeleteButton(isTaskSelected)}          
+          {this.getDeleteButton(isTaskSelected)}
           {this.getEditButton(isTaskSelected)}
           {this.getRestartButton(isTaskSelected)}
-      
+
           {!this.state.started ? this.startButton(isTaskSelected, task): this.stopButton(isTaskSelected, task)}
-          
-          {this.getMarkAsCompleteButton(isTaskSelected)}  
+
+          {this.getMarkAsCompleteButton(isTaskSelected)}
         </ButtonGroup>
       </Card>
     )

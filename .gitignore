@@ -1,6 +1,8 @@
 # SECTION: Custom
 aws/
 *.tar
+.scannerwork
+*.swp
 
 # SECTION: Vagrant
 .vagrant/

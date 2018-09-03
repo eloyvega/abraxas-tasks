@@ -11,14 +11,14 @@ class CreateTask(graphene.Mutation):
     duration = graphene.Int()
     finished = graphene.Boolean(default_value=False)
     consumed_time = graphene.Int(default_value=0)
+    created_at = graphene.DateTime(default_value=datetime.datetime.now())
   
   task = graphene.Field(Task)
 
   def mutate(self, info, **kwargs):
     _id = hashlib.sha224(kwargs['detail'].encode()).hexdigest()
-    created_at = datetime.datetime.now()
 
-    TaskModel(**kwargs, _id=_id, created_at=created_at).save()
+    TaskModel(**kwargs, _id=_id).save()
 
-    task = Task(**kwargs, _id=_id, created_at=created_at)
+    task = Task(**kwargs, _id=_id)
     return CreateTask(task=task)

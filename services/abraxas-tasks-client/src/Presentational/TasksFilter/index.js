@@ -3,8 +3,7 @@ import React from 'react';
 import './index.css';
 import 'antd/dist/antd.css';
 
-import { Input } from 'antd';
-import { Select } from 'antd';
+import { Input, Select } from 'antd';
 
 const Option = Select.Option;
 const Search = Input.Search;
@@ -40,11 +39,11 @@ export default class extends React.Component {
         <p style={{ marginRight: "5px", fontWeight: "bold"}}
           data-step="5"
           data-intro="Puedes filtrar las tareas segun su estado, las que ya terminaste o las que tienes pendientes."
-        > 
-          Filtrar por estado 
+        >
+          Filtrar por estado
         </p>
         <Select defaultValue="" style={{width: "120px"}} onChange={(value) => {
-          let finished = undefined;
+          let finished = null;
           if (value === "terminada")
             finished = true;
           if (value === "pendiente")
@@ -66,8 +65,8 @@ export default class extends React.Component {
         <p style={{ marginRight: "5px", fontWeight: "bold", marginLeft: "5px" }}
           data-step="6"
           data-intro="Tambien segun la duracion: CORTAS que son tareas que duran 30 minutos o menos, MEDIAS duran de 30 a 60 minutos y LARGAS que duran de 1 a 2 horas"
-        > 
-          Filtrar por duracion 
+        >
+          Filtrar por duracion
         </p>
         <Select defaultValue="" style={{width: "120px"}} onChange={(durationName) => {
           const durationFilter = {

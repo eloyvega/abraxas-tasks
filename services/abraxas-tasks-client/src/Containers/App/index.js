@@ -15,7 +15,7 @@ export default class extends React.Component {
   render() {
     return (
       <Layout style={{
-        height: "100%", 
+        height: "100%",
         backgroundColor: "#d9d9d9d4"
       }}
         data-step="1"

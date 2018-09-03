@@ -1,5 +1,4 @@
-import ApolloClient from 'apollo-client';
-import { createNetworkInterface } from 'apollo-client';
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
 
 import gql from "graphql-tag";
 
@@ -23,9 +22,35 @@ export const QUERY_VISIBLE_TASKS = gql`
   }
 `;
 
+export const QUERY_ALL_TASKS = gql`
+  query {
+    tasks {
+      id
+      duration
+      detail
+      finished
+      consumedTime
+      createdAt
+    }
+  }
+`;
+
 export const QUERY_DELETE_TASK = gql`
   mutation DeleteTask($detail: String!) {
     deleteTasks(detail: $detail) {
+      tasks {
+        duration
+        detail
+        createdAt
+        finished
+      }
+    }
+  }
+`;
+
+export const QUERY_DELETE_ALL_TASKS = gql`
+  mutation DeleteTask {
+    deleteTasks {
       tasks {
         duration
         detail
@@ -50,6 +75,19 @@ export const QUERY_UPDATE_TASK = gql`
 export const QUERY_CREATE_TASK = gql`
   mutation CreateTask($detail: String!, $duration: Int) {
     createTask(detail: $detail, duration: $duration) {
+      task {
+        id
+        duration
+        detail
+        finished
+      }
+    }
+  }
+`;
+
+export const QUERY_CREATE_RANDOM_TASK = gql`
+  mutation CreateRandomTask($detail: String!, $duration: Int, $consumedTime: Int, $createdAt: DateTime, $finished: Boolean) {
+    createTask(detail: $detail, duration: $duration, consumedTime: $consumedTime, createdAt: $createdAt, finished: $finished) {
       task {
         id
         duration
