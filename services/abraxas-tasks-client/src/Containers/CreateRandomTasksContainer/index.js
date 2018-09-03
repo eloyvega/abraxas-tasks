@@ -9,9 +9,9 @@ import { QUERY_CREATE_RANDOM_TASK, QUERY_VISIBLE_TASKS, QUERY_ALL_TASKS } from "
 
 export default (filter) => graphql(QUERY_CREATE_RANDOM_TASK, {
   props: ({ ownProps, mutate }) => ({
-    addTask: ({ duration, detail, consumedTime, createdAt, finished }) => {
+    addTasks: (tasks) => {
       mutate({
-        variables: { duration, detail, consumedTime, createdAt, finished },
+        variables: {tasks},
         refetchQueries: [{
             query: QUERY_VISIBLE_TASKS,
             variables: filter
@@ -26,13 +26,13 @@ export default (filter) => graphql(QUERY_CREATE_RANDOM_TASK, {
   return (
     <Button
     onClick={() =>{
-      Array.from({length: 50}).forEach(() => {
+      const tasks = Array.from({length: 50}).map(() => {
         let createdAt = moment().subtract(Math.floor(Math.random() * (7 + 1)), "days").toISOString();
         let duration = Math.floor(Math.random() * (7200 - 10 + 1) + 10);
         let consumedTime = Math.floor(Math.random() * (duration - (duration * 0.8) + 1) + (duration * 0.8));
-
-        props.addTask({detail: loremIpsum(), createdAt, duration, consumedTime, finished: (Math.random() >= 0.5)});
+        return {detail: loremIpsum(), createdAt, duration, consumedTime, finished: (Math.random() >= 0.5)};
       });
+      props.addTasks(tasks);
     }}>
       Tareas aleatorias
     </Button>
