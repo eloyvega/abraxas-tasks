@@ -8,8 +8,6 @@ import { Layout } from 'antd';
 import AppHeader from './AppHeader.js';
 import AppContent from './AppContent.js';
 
-const { Footer } = Layout;
-
 export default class extends React.Component {
 
   render() {
@@ -24,16 +22,6 @@ export default class extends React.Component {
         <AppHeader />
 
         <AppContent />
-
-        <Footer style={{
-          textAlign: 'center',
-          position: "fixed",
-          bottom: 0,
-          width: "100%",
-          zIndex: "100"
-        }}>
-          Tasker by Marco
-        </Footer>
       </Layout>
     )
   }

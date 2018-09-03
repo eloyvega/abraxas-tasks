@@ -18,7 +18,7 @@ export default (filter) => graphql(QUERY_CREATE_RANDOM_TASK, {
           },{
             query: QUERY_ALL_TASKS,
           }
-      ]
+        ]
       });
     }
   })

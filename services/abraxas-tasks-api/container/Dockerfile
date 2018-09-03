@@ -9,7 +9,7 @@ ADD app.tar $HOME/
 ADD run.sh $HOME/
 
 RUN cd $HOME && pip install -r requirements.txt
-RUN pip install gunicorn
+RUN pip install uwsgi
 
 EXPOSE 5000
 
