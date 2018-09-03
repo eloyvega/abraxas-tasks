@@ -26,7 +26,7 @@ export default (filter) => graphql(QUERY_CREATE_RANDOM_TASK, {
   return (
     <Button size="large"
     onClick={() =>{
-      Array.from({length: n}).forEach(() => {
+      Array.from({length: 50}).forEach(() => {
         let createdAt = moment().subtract(Math.floor(Math.random() * (7 + 1)), "days").toISOString();
         let duration = Math.floor(Math.random() * (7200 - 10 + 1) + 10);
         let consumedTime = Math.floor(Math.random() * (duration - (duration * 0.8) + 1) + (duration * 0.8));

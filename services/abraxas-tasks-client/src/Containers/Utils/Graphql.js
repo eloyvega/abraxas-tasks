@@ -84,3 +84,16 @@ export const QUERY_CREATE_TASK = gql`
     }
   }
 `;
+
+export const QUERY_CREATE_RANDOM_TASK = gql`
+  mutation CreateRandomTask($detail: String!, $duration: Int, $consumedTime: Int, $createdAt: DateTime, $finished: Boolean) {
+    createTask(detail: $detail, duration: $duration, consumedTime: $consumedTime, createdAt: $createdAt, finished: $finished) {
+      task {
+        id
+        duration
+        detail
+        finished
+      }
+    }
+  }
+`;
