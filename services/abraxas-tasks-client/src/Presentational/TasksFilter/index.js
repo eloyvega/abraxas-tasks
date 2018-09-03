@@ -66,7 +66,7 @@ export default class extends React.Component {
           data-step="6"
           data-intro="También por duración: CORTAS (30 minutos o menos), MEDIAS (de 30 a 60 minutos) y LARGAS (de 1 a 2 horas)"
         >
-          Filtrar por duracion
+          Filtrar por duración
         </p>
         <Select defaultValue="" style={{width: "120px"}} onChange={(durationName) => {
           const durationFilter = {
@@ -93,7 +93,7 @@ export default class extends React.Component {
           data-intro="Puedes buscar tus tareas a partir de la descripción 🔍"
         >
           <Search
-            placeholder="Buscar por descripcion"
+            placeholder="Buscar por descripción"
             onSearch={() => {this.props.onClickSearch(this.state) }}
             onChange={(evt) => {
               let detail = evt.target.value;

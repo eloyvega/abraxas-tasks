@@ -18,9 +18,9 @@ export default class extends React.Component {
     const toSeconds = (time) => ((time.hours() * 60 * 60) + (time.minutes() * 60) + time.seconds());
     return (
       <div>
-        <p>Duracion</p>
+        <p>Duración</p>
         <TimePicker defaultValue={moment('00:30:00', 'HH:mm:ss')}
-          placeholder="Duracion"
+          placeholder="Duración"
           onChange={(time, timeString) => this.setState({newTaskDuration: toSeconds(time)})}
         />
       </div>

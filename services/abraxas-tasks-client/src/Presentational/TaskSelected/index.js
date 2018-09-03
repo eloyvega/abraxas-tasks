@@ -179,7 +179,7 @@ export default class extends React.Component {
     return (
       <div>
         <TimePicker defaultValue={moment(timer, 'HH:mm:ss')}
-          placeholder="Duracion"
+          placeholder="Duración"
           onChange={(time, timeString) => this.setState({newTaskDuration: toSeconds(time)})}
         />
       </div>
@@ -191,7 +191,7 @@ export default class extends React.Component {
       <div>
         <p className="taskselected-title"
           style={{borderBottom: "unset", color: "#ffffff", marginBottom: "0px", float: "left"}}>
-            {this.state.editable ? this.getTimePicker(prettyFormatSeconds(this.state.task.duration)) : "Duracion: " + prettyFormatSeconds((this.state.task.duration))}
+            {this.state.editable ? this.getTimePicker(prettyFormatSeconds(this.state.task.duration)) : "Duración: " + prettyFormatSeconds((this.state.task.duration))}
         </p>
         <p className="taskselected-title"
           style={{borderBottom: "unset", color: "#f06e67", float: "right"}}>

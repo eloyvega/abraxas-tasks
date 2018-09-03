@@ -47,10 +47,10 @@ export default () => {
         const weekdaysTranslate = {
           'Monday': "Lunes",
            'Tuesday': "Martes",
-          'Wednesday': "Miercoles",
+          'Wednesday': "Miércoles",
           'Thursday': "Jueves",
           'Friday': "Viernes",
-          'Saturday': "Sabado",
+          'Saturday': "Sábado",
           'Sunday': "Domingo",
         };
         const chartData = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((key) => {
