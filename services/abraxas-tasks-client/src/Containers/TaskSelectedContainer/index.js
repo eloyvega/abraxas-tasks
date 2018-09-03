@@ -6,7 +6,6 @@ import {QUERY_DELETE_TASK, QUERY_ALL_TASKS, QUERY_UPDATE_TASK, QUERY_VISIBLE_TAS
 const DeleteTasksMutation = (filter) => graphql(QUERY_DELETE_TASK, {
   props: ({ ownProps, mutate }) => ({
     onDelete: ({ duration, detail }) => {
-      console.log(filter);
       mutate({
         variables: { duration, detail },
         refetchQueries: [{

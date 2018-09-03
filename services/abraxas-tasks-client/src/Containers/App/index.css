@@ -15,3 +15,98 @@
   border-bottom-width: 1px;
   color: #f0f2f5;
 }
+ 
+.task-selected-container {
+  height: 150px;
+  width: 55%;
+  position: relative;
+  z-index: 9;
+  padding-right: 80px;
+}   
+
+.chart-tasks-completenes-container {
+  width: 45%;
+  padding-right: 5%;
+}
+
+.tasks-filter {
+    width: 45%;
+    padding-right: 5%;
+}
+
+.tasks-actions-container {
+  text-align: right;
+  float: right;
+  width: 55%;
+}
+    
+.ant-layout-content {
+  padding: 0 50px;
+  margin-top: 310px;
+  overflow: overlay;
+  margin-bottom: 78px;
+  width: 100%;
+}
+    
+.tasks-header-container {
+  display: flex;
+}
+
+@media only screen and (max-width: 1000px) {
+    .ant-layout-content {
+      margin-top: 350px;
+      margin-bottom: 50px;
+    }
+
+    .chart-tasks-completenes-container {
+      width: 350px;
+    }
+    .tasks-filter {
+      width: 100%;
+      padding-top: 52px;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+
+    .ant-layout-content {
+      margin-top: 350px;
+      margin-bottom: 50px;
+    }
+
+    .chart-tasks-completenes-container {
+      width: 300px;
+    }
+    .tasks-filter {
+      width: 100%;
+      padding-top: 52px;
+    }
+
+    .chart-tasks-completenes-container {
+      width: 100%;
+      padding-right: 10%;
+    }
+
+    .task-selected-container {
+      height: 150px;
+      width: 100%;
+      position: relative;
+      z-index: 9;
+    }   
+    
+    .tasks-header-container {
+      display: block;
+    }
+    
+    .ant-layout-content {
+      width: 90%;
+      margin-top: 500px;
+      margin-bottom: 50px;
+    }
+
+    .tasks-actions-container {
+      text-align: right;
+      float: right;
+      width: 100%;
+    }
+}

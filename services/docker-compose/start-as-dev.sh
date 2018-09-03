@@ -8,6 +8,7 @@ export ABRAXAS_TASKS_API_IMAGE="abraxas-tasks-api"
 DOCKER_COMPOSE_DIR=$(pwd)
 
 # Create abraxas-tasks-api image
+
 cd ../abraxas-tasks-api/container/
 ./build.sh abraxas-tasks-api
 cd $DOCKER_COMPOSE_DIR

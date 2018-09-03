@@ -35,18 +35,41 @@ export default class extends React.Component {
     const CreateRandomTasks = CreateRandomTasksContainer(this.state.filter);
     const DeleteAllTasks = DeleteAllTasksContainer(this.state.filter, () => this.setState({selectedTask: {}}));
     return (
-      <div style={{ padding: "17px", width: "90%"}}>
-        <div style={{float: "right", marginTop: "10px"}}>
-          <DeleteAllTasks />
-          <CreateRandomTasks style={{marginLeft: "5px"}} />
-          <Button style={{marginLeft: "5px"}}
-            type="primary" icon="plus" size="large"
-            data-step="2"
-            data-intro="Lo primero que debes saber es que aqui puedes crear tareas. Cuentame que quieres hacer y cuanto tiempo te tomara."
-            onClick={() => this.setState({visibleCreateTask: true})}
+      <div>
+        <div className="tasks-actions-container" style={{float: "right", marginTop: "10px", marginRight: "45px" }}>
+          <div
+            style={{
+              float: "right"
+            }}
           >
-            Nueva tarea
-          </Button>
+            <Button style={{marginLeft: "5px"}}
+              type="primary" icon="plus"
+              data-step="2"
+              data-intro="Aquí puedes crear tareas. Cuéntame qué quieres hacer y cuánto ⏰ te tomará"
+              onClick={() => this.setState({visibleCreateTask: true})}
+            >
+              Nueva tarea
+            </Button>
+          </div>
+
+          <div
+            style={{
+              float: "right"
+            }}
+            data-step="9"
+            data-intro="Con este botón podrás crear 50 tareas 〰️〰️"
+          >
+            <CreateRandomTasks style={{marginLeft: "5px"}} />
+          </div>
+
+          <div
+            style={{
+              float: "right"
+            }}
+          >
+            <DeleteAllTasks />
+          </div>
+
         </div>
       </div>
     );
@@ -71,12 +94,7 @@ export default class extends React.Component {
     const TaskSelected = TaskSelectedContainer(this.state.filter);
     return (
       <ApolloProvider client={client}>
-        <Content style={{
-          padding: '0 50px',
-          marginTop: "300px",
-          overflow: "overlay",
-          marginBottom: "78px"
-        }}>
+        <Content>
           {this.getCreateTaskDrawer()}
 
           <div
@@ -86,16 +104,25 @@ export default class extends React.Component {
               top: "73px",
             }}
           >
-            <div style={{display: "flex"}}>
-              <div style={{ height: "140px", width: "39%", marginTop: "22px" }}>
+            <div className="tasks-header-container">
+              <div 
+                style={{ height: "150px", marginTop: "22px" }}
+                className="chart-tasks-completenes-container"
+                data-step="8"
+                data-intro="Esta gráfica te mostrará un resumen de tus tareas por día 📈"
+              >
                 <ChartTasksCompletenesContainer />
               </div>
-              <div style={{ height: "140px", width: "50%" }}>
+              <div 
+                className="task-selected-container"
+                data-step="7"
+                data-intro="Cuando des clic sobre una tarea, podrás ver todos los detalles aquí 👆"
+              >
                 <TaskSelected task={this.state.selectedTask} />
               </div>
             </div>
 
-            <div>
+            <div style={{marginTop: "35px", width: "90%"}}>
               {this.getNewTaskButton()}
 
               <TasksFilter onClickSearch={(filter) => {
@@ -104,6 +131,17 @@ export default class extends React.Component {
             </div>
 
           </div>
+          <div
+            data-step="3"
+            data-intro="Una vez creada, podrás ver tu tarea aquí 👀"
+            style={{
+              borderBottomColor:" #fccc5b",
+              borderBottomStyle: "solid",
+              color: "#2e3e4f",
+              fontWeight: "bold",
+              marginBottom: "7px"
+            }}
+          > Mis tareas </div>
           {TasksGridContainer({...this.state.filter, onClick: (task) => this.setState({selectedTask: task})})}
         </Content>
       </ApolloProvider>

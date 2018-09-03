@@ -8,8 +8,6 @@ import { Layout } from 'antd';
 import AppHeader from './AppHeader.js';
 import AppContent from './AppContent.js';
 
-const { Footer } = Layout;
-
 export default class extends React.Component {
 
   render() {
@@ -19,21 +17,11 @@ export default class extends React.Component {
         backgroundColor: "#d9d9d9d4"
       }}
         data-step="1"
-        data-intro="Bienvenido a Tasker, te dare un tour rapido por la herramienta."
+        data-intro="Bienvenido a Tasker, te daré un tour rápido por la herramienta 👋"
       >
         <AppHeader />
 
         <AppContent />
-
-        <Footer style={{
-          textAlign: 'center',
-          position: "fixed",
-          bottom: 0,
-          width: "100%",
-          zIndex: "100"
-        }}>
-          Tasker by Marco
-        </Footer>
       </Layout>
     )
   }

@@ -38,7 +38,7 @@ export default class extends React.Component {
       <div style={{display: "flex"}}>
         <p style={{ marginRight: "5px", fontWeight: "bold"}}
           data-step="5"
-          data-intro="Puedes filtrar las tareas segun su estado, las que ya terminaste o las que tienes pendientes."
+          data-intro="Puedes filtrar tus tareas según su estado (terminadas y pendientes) ✅"
         >
           Filtrar por estado
         </p>
@@ -64,9 +64,9 @@ export default class extends React.Component {
       <div style={{ display: "flex" }}>
         <p style={{ marginRight: "5px", fontWeight: "bold", marginLeft: "5px" }}
           data-step="6"
-          data-intro="Tambien segun la duracion: CORTAS que son tareas que duran 30 minutos o menos, MEDIAS duran de 30 a 60 minutos y LARGAS que duran de 1 a 2 horas"
+          data-intro="También por duración: CORTAS (30 minutos o menos), MEDIAS (de 30 a 60 minutos) y LARGAS (de 1 a 2 horas)"
         >
-          Filtrar por duracion
+          Filtrar por duración
         </p>
         <Select defaultValue="" style={{width: "120px"}} onChange={(durationName) => {
           const durationFilter = {
@@ -87,13 +87,13 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div>
-        <div style={{"width": "50%"}}
+      <div className="tasks-filter">
+        <div
           data-step="4"
-          data-intro="Puedes buscar tus tareas a partir de la descripcion"
+          data-intro="Puedes buscar tus tareas a partir de la descripción 🔍"
         >
           <Search
-            placeholder="Buscar por descripcion"
+            placeholder="Buscar por descripción"
             onSearch={() => {this.props.onClickSearch(this.state) }}
             onChange={(evt) => {
               let detail = evt.target.value;
