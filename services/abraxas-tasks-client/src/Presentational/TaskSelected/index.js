@@ -3,7 +3,7 @@ import React from 'react';
 import './index.css';
 import 'antd/dist/antd.css';
 import moment from 'moment';
-import { Card, Input, Button, Popconfirm, TimePicker } from 'antd';
+import { Card, Input, Button, Popconfirm, TimePicker, message } from 'antd';
 
 import { prettyFormatSeconds } from '../Utils/Timeformat';
 
@@ -88,10 +88,16 @@ export default class extends React.Component {
       return (
         <Button  icon="save"
           onClick={ () => {
-              this.setState({started: false});
-              clearTimeout(this.state.startTimeOut);
-              this.setState({editable: false, isTaskSelected: true})
-              this.props.onChange({...this.state.task, duration: this.state.newTaskDuration});
+              const duration = this.state.newTaskDuration;
+              if (duration <= 7200) {
+                this.setState({started: false});
+                clearTimeout(this.state.startTimeOut);
+                this.setState({editable: false, isTaskSelected: true})
+                this.props.onChange({...this.state.task, duration: this.state.newTaskDuration});
+                message.info('Listo! Tarea modificada 🎉🙌');
+              } else {
+                message.error('No puede durar más de 2 horas 😅');
+              }
             }
           }
         > Guardar </Button>
