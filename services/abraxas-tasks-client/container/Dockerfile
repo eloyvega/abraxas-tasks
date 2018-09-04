@@ -1,9 +1,9 @@
 FROM node:8.11.1
 
 EXPOSE 3000
+EXPOSE 9009
 
 ENV APP_HOME /opt/app
-ENV NODE_ENV production
 
 ADD app.tar $APP_HOME
 

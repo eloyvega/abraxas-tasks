@@ -27,6 +27,16 @@ services:
       - 3000:3000
     environment:
       - REACT_APP_GRAPHQL_URI=${REACT_APP_GRAPHQL_URI}
+  
+  abraxas-tasks-client-storybook:
+    image: ${ABRAXAS_TASKS_CLIENT_IMAGE}
+    restart: always
+    ports:
+      - 9009:9009
+    entrypoint:
+      - npm
+      - run
+      - storybook
 
   abraxas-tasks-api:
     image: ${ABRAXAS_TASKS_API_IMAGE}

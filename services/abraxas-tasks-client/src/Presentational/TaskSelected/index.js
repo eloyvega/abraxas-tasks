@@ -213,7 +213,7 @@ export default class extends React.Component {
             <div>
               <div style={{height: "45px"}}>
               <p className="taskselected-title" style={{float: "left"}}>
-                Tarea actual 
+                Tarea actual
               </p>
               <p className="taskselected-title" style={{float: "right", borderBottomStyle: "unset", color: !this.state.task.finished ? "#fd6f69" : "#83b6a4"}}>
                 {this.state.task.finished ? "Terminada" : "Pendiente"}
