@@ -126,7 +126,7 @@ export default class extends React.Component {
 
   getDeleteButton(isTaskSelected) {
     return (
-      <Popconfirm title="Estas seguro de borrar esta tarea"
+      <Popconfirm title="¿Estás seguro de que quieres borrar esta tarea?"
         okText="Si"
         cancelText="No"
         onConfirm={
@@ -145,7 +145,7 @@ export default class extends React.Component {
 
   getRestartButton(isTaskSelected) {
     return (
-      <Popconfirm title="El contador regresara a su estado inicial, estas seguro de esto?"
+      <Popconfirm title="El contador regresará a su estado inicial, ¿estás seguro de esto?"
         onConfirm={
           () => {
             const task = {...this.state.task, consumedTime: 0};
