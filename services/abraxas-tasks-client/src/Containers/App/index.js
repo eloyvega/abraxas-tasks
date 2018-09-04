@@ -18,7 +18,7 @@ export default class extends React.Component {
             <div>
               <h1>Tasker</h1>
               <p>
-                Aun no contamos con opción para pantallas tan pequeñas, entra desde una pantalla mas grande :)
+                Aun no contamos con opción para pantallas de este tamaño. Entra desde una pantalla mas grande :)
               </p>
             </div>
           </div>
