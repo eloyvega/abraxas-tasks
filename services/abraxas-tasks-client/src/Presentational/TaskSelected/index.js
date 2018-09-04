@@ -77,7 +77,8 @@ export default class extends React.Component {
             this.setState({started: false});
             clearTimeout(this.state.startTimeOut);
             this.setState({editable: true,
-              isTaskSelected: false
+              isTaskSelected: false,
+              newTaskDuration: this.state.task.duration
             });
           }
         }
@@ -89,6 +90,7 @@ export default class extends React.Component {
         <Button  icon="save"
           onClick={ () => {
               const duration = this.state.newTaskDuration;
+              console.log(duration);
               if (duration <= 7200) {
                 this.setState({started: false});
                 clearTimeout(this.state.startTimeOut);
