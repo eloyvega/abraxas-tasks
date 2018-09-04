@@ -92,10 +92,10 @@ export default class extends React.Component {
               const duration = this.state.newTaskDuration;
               console.log(duration);
               if (duration <= 7200) {
-                this.setState({started: false});
                 clearTimeout(this.state.startTimeOut);
-                this.setState({editable: false, isTaskSelected: true})
-                this.props.onChange({...this.state.task, duration: this.state.newTaskDuration});
+                const task = {...this.state.task, duration: this.state.newTaskDuration};
+                this.props.onChange({...task});
+                this.setState({started: false, editable: false, isTaskSelected: true, task: {...task}});
                 message.info('Listo! Tarea modificada 🎉🙌');
               } else {
                 message.error('No puede durar más de 2 horas 😅');
