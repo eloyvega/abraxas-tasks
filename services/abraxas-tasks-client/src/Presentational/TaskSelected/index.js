@@ -3,7 +3,7 @@ import React from 'react';
 import './index.css';
 import 'antd/dist/antd.css';
 import moment from 'moment';
-import { Card, Input, Button, Popconfirm, TimePicker } from 'antd';
+import { Card, Input, Button, Popconfirm, TimePicker, message } from 'antd';
 
 import { prettyFormatSeconds } from '../Utils/Timeformat';
 
@@ -88,10 +88,16 @@ export default class extends React.Component {
       return (
         <Button  icon="save"
           onClick={ () => {
-              this.setState({started: false});
-              clearTimeout(this.state.startTimeOut);
-              this.setState({editable: false, isTaskSelected: true})
-              this.props.onChange({...this.state.task, duration: this.state.newTaskDuration});
+              const duration = this.state.newTaskDuration;
+              if (duration <= 7200) {
+                this.setState({started: false});
+                clearTimeout(this.state.startTimeOut);
+                this.setState({editable: false, isTaskSelected: true})
+                this.props.onChange({...this.state.task, duration: this.state.newTaskDuration});
+                message.info('Listo! Tarea modificada 🎉🙌');
+              } else {
+                message.error('No puede durar más de 2 horas 😅');
+              }
             }
           }
         > Guardar </Button>
@@ -120,7 +126,7 @@ export default class extends React.Component {
 
   getDeleteButton(isTaskSelected) {
     return (
-      <Popconfirm title="Estas seguro de borrar esta tarea"
+      <Popconfirm title="¿Estás seguro de que quieres borrar esta tarea?"
         okText="Si"
         cancelText="No"
         onConfirm={
@@ -139,7 +145,7 @@ export default class extends React.Component {
 
   getRestartButton(isTaskSelected) {
     return (
-      <Popconfirm title="El contador regresara a su estado inicial, estas seguro de esto?"
+      <Popconfirm title="El contador regresará a su estado inicial, ¿estás seguro de esto?"
         onConfirm={
           () => {
             const task = {...this.state.task, consumedTime: 0};
@@ -213,7 +219,7 @@ export default class extends React.Component {
             <div>
               <div style={{height: "45px"}}>
               <p className="taskselected-title" style={{float: "left"}}>
-                Tarea actual 
+                Tarea actual
               </p>
               <p className="taskselected-title" style={{float: "right", borderBottomStyle: "unset", color: !this.state.task.finished ? "#fd6f69" : "#83b6a4"}}>
                 {this.state.task.finished ? "Terminada" : "Pendiente"}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Input, TimePicker } from 'antd';
+import { Button, Input, TimePicker, message } from 'antd';
 import moment from 'moment';
 
 const { TextArea } = Input;
@@ -43,11 +43,18 @@ export default class extends React.Component {
             type="primary"
             style={{width: "100%", marginTop: "15px"}}
             onClick={() => {
-              const variables = {
-                duration: this.state.newTaskDuration,
-                detail: this.state.newTaskDetail
-              };
-              this.props.addTask(variables);
+              const duration = this.state.newTaskDuration;
+              console.log(duration);
+              if (duration <= 7200) {
+                const variables = {
+                  duration,
+                  detail: this.state.newTaskDetail
+                };
+                this.props.addTask(variables);
+                message.info('Listo! Tarea creada 🎉🙌');
+              } else {
+                message.error('No puedes crear tareas de más de 2 horas 😅');
+              }
             }}
         >
           Crear

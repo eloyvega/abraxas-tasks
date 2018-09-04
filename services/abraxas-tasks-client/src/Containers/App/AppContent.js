@@ -105,7 +105,7 @@ export default class extends React.Component {
             }}
           >
             <div className="tasks-header-container">
-              <div 
+              <div
                 style={{ height: "150px", marginTop: "22px" }}
                 className="chart-tasks-completenes-container"
                 data-step="8"
@@ -113,7 +113,7 @@ export default class extends React.Component {
               >
                 <ChartTasksCompletenesContainer />
               </div>
-              <div 
+              <div
                 className="task-selected-container"
                 data-step="7"
                 data-intro="Cuando des clic sobre una tarea, podrás ver todos los detalles aquí 👆"
