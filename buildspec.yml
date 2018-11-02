@@ -1,0 +1,10 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - cd services/abraxas-tasks-api/container/
+      - ./build.sh mass90/demo-code-deploy
+  post_build:
+    commands:
+      - docker push mass90/demo-code-deploy
