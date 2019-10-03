@@ -93,7 +93,7 @@ export default class extends React.Component {
           data-intro="Puedes buscar tus tareas a partir de la descripción 🔍"
         >
           <Search
-            placeholder="Buscar por descripción"
+            placeholder="Mete ya una tarea!!!"
             onSearch={() => {this.props.onClickSearch(this.state) }}
             onChange={(evt) => {
               let detail = evt.target.value;
